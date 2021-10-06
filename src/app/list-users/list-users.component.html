@@ -1,13 +1,20 @@
 <!-- <p>list-users works!</p> -->
 <button (click) = "LocalUrl()">LocalUrl</button>
 <button (click) ="InternetUrl()">Internet</button>
-<div>
-    <ul>
+
+
+<div *ngIf ="list">
+    <ol>
         <li *ngFor="let item of list">
         {{item.id}}
         {{item.username}}
         {{item.name}}
         {{item.email}}
+        <button (click)="DeleteItem(item.id)">delete</button>
         </li>
-    </ul>
+    </ol>
 </div>
+<!-- <p>Привет {{name}}</p>
+<input type="text" [(ngModel)]="name"><br><br>
+<input type="text" [(ngModel)]="name">
+<p>{{name}}</p> -->

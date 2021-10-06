@@ -12,9 +12,6 @@ export interface IUser {
   email?: string;
   // address?: EndingType;
 }
-export interface IListUser {
-  listUser: IUser[];
-}
 
 @Injectable({
   providedIn: 'root',
@@ -25,26 +22,27 @@ export class UserService {
   url = 'https://jsonplaceholder.typicode.com/users';
   localUrl = '/assets/users.json';
 
-  constructor(readonly client: HttpClient) {
-    // this.getUsers();
-    // console.log(this.users);
-  }
+  constructor(readonly client: HttpClient) {}
 
-  // users: IUser[] = [
-  //   { id: 1, username: 'Vasa', name: 'Vasiliev', email: 'Vasa@email.com' },
+  // users2: IUser[] = [
+  //   { id: 1, username: 'Vasa2', name: 'Vasiliev', email: 'Vasa@email.com' },
   //   { id: 2, username: 'Kolya', name: 'Nikolaev', email: 'Kolya@email.com' },
   //   { id: 3, username: 'Petya', name: 'Petrov', email: 'Petya@email.com' },
   //   { id: 4, username: 'Zina', name: 'Zinger', email: 'Zina@email.com' },
   // ];
 
-  getUsers(url:string = this.url) {
-    // this.client.get<IUser>(this.url).subscribe((data:any) => this.users.push(data[2]));
-    // this.users=[];
-    this.client.get<IUser>(url).subscribe((data: any) =>
-      data.forEach((element: IUser) => {
-        this.users.push(element);
-      })
-    );
+
+  // getUsers2(url: string = this.url): void {
+  //   this.client
+  //     .get<IUser[]>(url)
+  //     .subscribe((data) => {
+  //       this.users = data;
+  //       console.log(data);
+  //     });
+  // }
+
+  getUsers(url: string = this.url): Observable<IUser[]> {
+    return this.client.get<IUser[]>(url);
   }
 
   // deleteUser(id: number) {
