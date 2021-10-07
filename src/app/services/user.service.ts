@@ -12,7 +12,10 @@ export interface IUser {
   email?: string;
   // address?: EndingType;
 }
-
+export interface Ilink{
+  name:string;
+  link:string;
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -21,6 +24,12 @@ export class UserService {
 
   url = 'https://jsonplaceholder.typicode.com/users';
   localUrl = '/assets/users.json';
+
+  urls:Ilink[]=[
+   {name:'jsonplaceholder_Url',link: 'https://jsonplaceholder.typicode.com/users'},
+   {name:'local_Url',link: '/assets/users.json'},
+   {name:'local_Url_2',link: '/assets/users_2.json'},
+  ]
 
   constructor(readonly client: HttpClient) {}
 
