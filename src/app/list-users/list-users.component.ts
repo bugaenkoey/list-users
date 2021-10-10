@@ -1,7 +1,6 @@
-import { Component, OnInit, VERSION } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Ilink, IUser, UserService } from '../services/user.service';
-import { FormControl, FormGroup } from '@angular/forms'; ////
-// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-list-users',
@@ -11,16 +10,7 @@ import { FormControl, FormGroup } from '@angular/forms'; ////
 })
 export class ListUsersComponent implements OnInit {
   public list: IUser[] | undefined;
-  // name: string = 'my Name' + VERSION.major;
   public urls: Ilink[] | undefined;
-
-  //  states = [
-  //   {name: 'Arizona', abbrev: 'AZ'},
-  //   {name: 'California', abbrev: 'CA'},
-  //   {name: 'Colorado', abbrev: 'CO'},
-  //   {name: 'New York', abbrev: 'NY'},
-  //   {name: 'Pennsylvania', abbrev: 'PA'},
-  // ];
 
   constructor(readonly userService: UserService) {}
 
@@ -39,7 +29,21 @@ export class ListUsersComponent implements OnInit {
     this.userService.getUsers(this.form.value['url']).subscribe((data) => {
       this.list = data;
       console.log(data);
+      
     });
+  }
+  DeleteItem(id: number) {
+    console.log('DeleteItem:' + id + ' Url ' + this.form.value['url']);
+    this.userService.deleteUser(this.form.value['url'],id)
+  }
+
+  EditItem(id: number) {
+    console.log('EditItem:' + id + ' Url ' + this.form.value['url']);
+    this.userService.EditItem(this.form.value['url'],id)
+  }
+
+  AddItem() {
+    console.log('AddItem' + ' Url ' + this.form.value['url']);
   }
 
   // LocalUrl() {
@@ -56,15 +60,4 @@ export class ListUsersComponent implements OnInit {
   //     console.log(data);
   //   });
   // }
-  DeleteItem(id: number) {
-    console.log('DeleteItem:' + id);
-  }
-
-  EditItem(id: number) {
-    console.log('EditItem:' + id);
-  }
-
-  AddItem() {
-    console.log('AddItem');
-  }
 }

@@ -1,17 +1,8 @@
-<!-- <p>list-users works!</p> -->
-<!-- <button (click)="LocalUrl()">LocalUrl</button>
-<button (click)="InternetUrl()">Internet</button> -->
-
-<!-- <div>
-  <form>
-    <select (change)="showUsers('this.value')">
-      <option *ngFor="let url of urls"  value="url">
-        {{ url.name }}
-      </option>
-    </select>
-  </form>
-</div> -->
-
+<!-- 
+<p>list-users works!</p>
+<button (click)="LocalUrl()">LocalUrl</button>
+<button (click)="InternetUrl()">Internet</button>
+-->
 
 <form [formGroup]="form">
   <select formControlName="url" (change)="showUsers()" >
@@ -21,34 +12,38 @@
   </select>
 </form>
 <p>Url path: {{ form.value['url'] }}</p>
+
  <!-- <p>Form value: {{ form.value | json }}</p> -->
 
-<!-- 
-<form [formGroup]="form">
-  <select formControlName="state">
-    <option *ngFor="let state of states" [ngValue]="state">
-      {{ state.abbrev }}
-    </option>
-  </select>
-</form>
-
- <p>Form value: {{ form.value | json }}</p> -->
- <!-- {state: {name: 'New York', abbrev: 'NY'} } -->
-
-
 <button (click)="AddItem()">AddItem</button>
+
 <div *ngIf="list">
-  <ol>
+  <ul>
     <li *ngFor="let item of list">
+
+      <!-- <ul>
+        <li>Подпункт 1.1</li>
+        <li>Подпункт 1.2  </li>
+       </ul> -->
       {{ item.id }}
       {{ item.username }}
       {{ item.name }}
       {{ item.email }}
+      {{item.address}}
+      {{item.title}}
+      
+      <!-- <ul>
+        <li *ngFor="let dat of item.data">
+        {{dat.email}}
+      </li>
+      </ul> -->
+      {{item.url}}
       <button (click)="DeleteItem(item.id)">delete</button>
       <button (click)="EditItem(item.id)">EditItem</button>
     </li> 
-  </ol>
+  </ul>
 </div>
+
 <!-- <p>Привет {{name}}</p>
 <input type="text" [(ngModel)]="name"><br><br>
 <input type="text" [(ngModel)]="name">
