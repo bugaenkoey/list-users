@@ -9,12 +9,12 @@ import { tap } from 'rxjs/operators';
 
 export interface IUser {
   id: number;
-  username: string;
   name: string;
+  username: string;
   email?: string;
-  url: string;  
-  address: EndingType;
-  title: string; 
+  // url: string;  
+  // address: EndingType;
+  // title: string; 
 }
 
 export interface Ilink{
@@ -45,34 +45,26 @@ export class UserService {
 
   constructor(readonly client: HttpClient) {}
 
-  // users2: IUser[] = [
-  //   { id: 1, username: 'Vasa2', name: 'Vasiliev', email: 'Vasa@email.com' },
-  //   { id: 2, username: 'Kolya', name: 'Nikolaev', email: 'Kolya@email.com' },
-  //   { id: 3, username: 'Petya', name: 'Petrov', email: 'Petya@email.com' },
-  //   { id: 4, username: 'Zina', name: 'Zinger', email: 'Zina@email.com' },
-  // ];
-
-
-  // getUsers2(url: string = this.url): void {
-  //   this.client
-  //     .get<IUser[]>(url)
-  //     .subscribe((data) => {
-  //       this.users = data;
-  //       console.log(data);
-  //     });
-  // }
 
   getUsers(url: string): Observable<IUser[]> {
     return this.client.get<IUser[]>(url);
   }
 
-  deleteUser(url: string,id: number) {
+  
+  // deleteUser(id: number): Observable<{}> {
+  //   return this.client.delete(`${this.url}/${id}`);
+  // }
+
+  deleteUser(url: string,id: number):Observable<{}> {
     // this.users = this.users.filter((t) => t.id !== id);
     // return this.client.get<IUser[]>(url);
-    console.log('DeleteItemClient:' + id + ' Url ' + url);
-   const delR  = url+"/"+id;
-   console.log(delR);
-    return this.client.delete(delR);
+    // console.log('DeleteItemClient:' + id + ' Url ' + url);
+    url+= "/"+id;
+  //  const delR  = url+"/"+id;
+   console.log(url);
+  const answer=this.client.delete(url);
+  console.log("My answer ",answer);
+    return answer;
 
   }
 
@@ -81,7 +73,8 @@ export class UserService {
     
   }
 
-  addUser(user: IUser) {
-    // this.users.push(user);
+  addUser(url: string,user: IUser) {
+    
+    return this.client.post(url, user);
   }
 }

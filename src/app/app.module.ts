@@ -7,11 +7,13 @@ import { ListUsersComponent } from './list-users/list-users.component';
 import { HttpClientModule } from '@angular/common/http';
 // import { FormsModule } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListUsersComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

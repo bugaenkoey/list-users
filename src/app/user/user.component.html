@@ -1,0 +1,11 @@
+<p>user works!</p>
+<form  (ngSubmit)="onSubmit()" >
+    <label>New USER</label><br>
+    <input type="text" [(ngModel)] = "user.name" name="user.name" ><br>
+    <input type="text" [(ngModel)] = "user.username" name="user.username" ><br>
+    <input type="text" [(ngModel)] = "user.email" name="user.email" ><br>
+  
+        <button type="submit">ADD</button>
+        
+</form>
+<p>{{user.name}}</p>
